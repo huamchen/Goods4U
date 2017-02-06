@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+    <Button
+        android:id="@+id/loadimage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Load Image"
+        />
+    <Button
+        android:id="@+id/takephoto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Take Photo"
+        />
+
+    <ImageView
+        android:id="@+id/targetimage"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.82"
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_title"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:typeface="normal"
+            android:fontFamily="sans-serif" />
+
+        <EditText
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText_title" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload"
+        />
+</LinearLayout>

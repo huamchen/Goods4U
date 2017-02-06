@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_homepage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.goods4u.goods4u.HomepageActivity"
+    tools:showIn="@layout/app_bar_homepage"
+    android:orientation="horizontal"  >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"  >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:onClick="enlargeImage"
+                app:srcCompat="@android:color/holo_purple"
+                android:id="@+id/imageView1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:onClick="enlargeImage"
+                app:srcCompat="@android:color/holo_orange_light"
+                android:id="@+id/imageView2"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"  >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:onClick="enlargeImage"
+                app:srcCompat="@android:color/holo_blue_bright"
+                android:id="@+id/imageView3"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:onClick="enlargeImage"
+                app:srcCompat="@android:color/holo_green_dark"
+                android:id="@+id/imageView4"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>
