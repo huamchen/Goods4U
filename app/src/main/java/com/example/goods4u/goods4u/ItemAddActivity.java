@@ -79,6 +79,11 @@ public class ItemAddActivity extends AppCompatActivity {
                     final String name=Constants.username+ Calendar.getInstance().getTimeInMillis()+".jpg";
                     saveBitmapFile(bitmap, path,name);
                     File file = new File(path+name);
+                    System.out.println(file.length());
+                    if(file.length()>1024*1024){
+                        Toast.makeText(ItemAddActivity.this,"Picture should smaller than 1MB",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     TransferObserver observer = transferUtility.upload(Constants.BUCKET_NAME, file.getName(), file);
                     Item item=new Item(name,null);
                     item.title=((EditText)findViewById(R.id.editText_title)).getText().toString();
@@ -101,7 +106,7 @@ public class ItemAddActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("owner_id",1001);
                 jsonObject.put("image",mItem.image);
-                jsonObject.put("title",mItem.title);
+                if(!mItem.title.isEmpty()) jsonObject.put("title",mItem.title);
                 JSONObject call_json = HttpUtil.post("http://52.24.19.99/goods4u.php/items", jsonObject.toString());
             } catch (IOException e) {
                 e.printStackTrace();
