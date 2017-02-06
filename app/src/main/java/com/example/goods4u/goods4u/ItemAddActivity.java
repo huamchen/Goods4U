@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,7 +23,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 
 
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,29 +79,46 @@ public class ItemAddActivity extends AppCompatActivity {
                     final String name=Constants.username+ Calendar.getInstance().getTimeInMillis()+".jpg";
                     saveBitmapFile(bitmap, path,name);
                     File file = new File(path+name);
-                //  TransferObserver observer = transferUtility.upload(Constants.BUCKET_NAME, file.getName(), file);
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                JSONObject jsonObject = new JSONObject();
-                                jsonObject.put("owner_id",1001);
-                                jsonObject.put("image",name);
-                                jsonObject.put("title",((EditText)findViewById(R.id.editText_title)).getText().toString());
-                                JSONObject call_json = HttpUtil.post("https://52.24.19.99/goods4u.php/items", jsonObject.toString());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }.start();
+                    TransferObserver observer = transferUtility.upload(Constants.BUCKET_NAME, file.getName(), file);
+                    Item item=new Item(name,null);
+                    item.title=((EditText)findViewById(R.id.editText_title)).getText().toString();
+                    new UploadDataTask(item).execute();
                 }
             }
         });
     }
+    public class UploadDataTask extends AsyncTask<Void, Void, Boolean> {
 
+        public Item mItem;
+        UploadDataTask(Item item){
+            mItem=item;
+        }
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            try {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("owner_id",1001);
+                jsonObject.put("image",mItem.image);
+                jsonObject.put("title",mItem.title);
+                JSONObject call_json = HttpUtil.post("http://52.24.19.99/goods4u.php/items", jsonObject.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            Toast.makeText(ItemAddActivity.this,"Upload success!",Toast.LENGTH_SHORT).show();
+            ItemAddActivity.this.finish();
+        }
+
+    }
     public void saveBitmapFile(Bitmap bitmap,String path,String name){
         File file=new File(path);
         if(!file.exists()){

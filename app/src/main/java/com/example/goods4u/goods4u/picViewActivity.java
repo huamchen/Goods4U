@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -65,10 +67,6 @@ public class picViewActivity extends AppCompatActivity {
         @Override
         public void run() {
             // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
             mControlsView.setVisibility(View.VISIBLE);
         }
     };
@@ -102,23 +100,9 @@ public class picViewActivity extends AppCompatActivity {
         Intent intent=getIntent();
         final String filePath=intent.getStringExtra("color");
         final ImageView image = (ImageView) findViewById(R.id.imageView5);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final Bitmap bitmap=getPicture(filePath);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                image.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        image.setImageBitmap(bitmap);
-                    }
-                });
-            }
-        }).start();
+        final Intent i=getIntent();
+        Bitmap bitmap= BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/pic/"+i.getStringExtra("image"));
+        image.setImageBitmap(bitmap);
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -142,9 +126,11 @@ public class picViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(picViewActivity.this,ScrollingActivity.class);
+                intent.putExtra("title",i.getStringExtra("title"));
                 startActivity(intent);
             }
         });
+
     }
     public Bitmap getPicture(String path){
         Bitmap bm=null;

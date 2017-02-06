@@ -3,6 +3,7 @@ package com.example.goods4u.goods4u;
 
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -67,13 +68,20 @@ public class HttpUtil {
         }
         return response;
     }
-    public String get(String url) throws IOException {
-        Request request = new Request.Builder().url(url).get().build();
-        Response response = client.newCall(request).execute();
-        if (response.isSuccessful()) {
-            return response.body().string();
-        } else {
-            throw new IOException("Unexpected code " + response);
+    public static String get(String url) throws IOException {
+        String jsonData=null;
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response responses = null;
+            responses = client.newCall(request).execute();
+            jsonData = responses.body().string();
+            } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println(jsonData);
+        return jsonData;
     }
 }

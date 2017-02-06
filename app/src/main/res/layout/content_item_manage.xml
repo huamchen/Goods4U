@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_item_manage"
@@ -12,15 +12,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.goods4u.goods4u.ItemManageActivity"
     tools:showIn="@layout/activity_item_manage">
-
+    <ProgressBar
+        android:id="@+id/item_manage_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
     <ListView
         android:id="@+id/lvItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="#00000000"
         android:divider="#808080"
-        android:dividerHeight="5dp"
-        android:transcriptMode="normal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
-</RelativeLayout>
+        android:dividerHeight="5dp" />
+</LinearLayout>

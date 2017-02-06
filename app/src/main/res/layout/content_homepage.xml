@@ -13,69 +13,20 @@
     tools:context="com.example.goods4u.goods4u.HomepageActivity"
     tools:showIn="@layout/app_bar_homepage"
     android:orientation="horizontal"  >
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"  >
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:onClick="enlargeImage"
-                app:srcCompat="@android:color/holo_purple"
-                android:id="@+id/imageView1"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:layout_height="match_parent"
-                android:onClick="enlargeImage"
-                app:srcCompat="@android:color/holo_orange_light"
-                android:id="@+id/imageView2"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"  >
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:layout_height="match_parent"
-                android:onClick="enlargeImage"
-                app:srcCompat="@android:color/holo_blue_bright"
-                android:id="@+id/imageView3"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:layout_height="match_parent"
-                android:onClick="enlargeImage"
-                app:srcCompat="@android:color/holo_green_dark"
-                android:id="@+id/imageView4"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
-        </TableRow>
-
-
-    </TableLayout>
-
+    <ProgressBar
+        android:id="@+id/homepage_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:id="@+id/GridView_picutre" />
 </RelativeLayout>
