@@ -9,7 +9,7 @@ public class Item {
     public String item_id;
     public String title=null;
     public String description=null;
-    public double price=0;
+    public String price=null;
     public String image;
     public String category;
     public Item(String mImage,String mCategory){

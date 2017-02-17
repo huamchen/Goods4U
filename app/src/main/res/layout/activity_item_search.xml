@@ -37,33 +37,52 @@
 
         <TextView
             android:text="Search by category"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3" />
 
         <TableLayout
+            android:stretchColumns="*"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                >
 
                 <Button
                     android:text="TextBook"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
                     android:id="@+id/button_textbook"
-                    android:background="@android:color/holo_blue_bright" />
+                    android:background="@android:color/holo_blue_bright"
+                    android:textAlignment="center" />
                 <Button
-                    android:text="Novel"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/button_novel"
-                    android:background="@android:color/holo_green_dark" />
+                    android:text="Fiction"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/button_fiction"
+                    android:onClick="searchByCategory"
+                    android:background="@android:color/holo_green_dark"
+                    android:textAlignment="center" />
+                <Button
+                    android:text="Sport"
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/button_sport"
+                    android:onClick="searchByCategory"
+                    android:background="@android:color/holo_green_dark"
+                    android:textAlignment="center" />
             </TableRow>
 
             <TableRow
@@ -72,27 +91,103 @@
 
                 <Button
                     android:text="Phone"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
                     android:id="@+id/button_phone"
+                    android:onClick="searchByCategory"
                     android:background="@android:color/holo_orange_dark" />
+
                 <Button
-                    android:text="Laptop"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/button_laptop"
-                    android:background="@android:color/holo_purple" />
+                    android:text="computer"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/button_computer"
+                    android:background="@android:color/holo_purple"
+                    android:onClick="searchByCategory"
+                    android:layout_width="120dp" />
+
+                <Button
+                    android:text="electronics"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/button_Elctric"
+                    android:textAlignment="center"
+                    android:background="@android:color/holo_purple"
+                    android:onClick="searchByCategory"
+                    android:layout_width="match_parent" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
 
+                <Button
+                    android:text="Cloth"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_cloth"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <Button
+                    android:text="Bag"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_bag"
+                    android:background="@android:color/holo_purple" />
+
+                <Button
+                    android:text="shoe"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_shoe"
+                    android:background="@android:color/holo_purple"
+                    android:layout_width="match_parent" />
+            </TableRow>
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:text="Car"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_car"
+                    android:background="@android:color/holo_orange_dark" />
+
+                <Button
+                    android:text="Bicycle"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_bicycle"
+                    android:background="@android:color/holo_purple" />
+                <Button
+                    android:text="Other"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="searchByCategory"
+                    android:id="@+id/button_other"
+                    android:background="@android:color/holo_purple" />
+            </TableRow>
         </TableLayout>
     </LinearLayout>
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>textbook</item>
+        <item>fiction</item>
+        <item>sport</item>
+        <item>phone</item>
+        <item>computer</item>
+        <item>electronic</item>
+        <item>cloth</item>
+        <item>bag</item>
+        <item>shoe</item>
+        <item>car</item>
+        <item>bicycle</item>
+        <item>other</item>
+    </string-array>
+</resources>

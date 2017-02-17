@@ -8,10 +8,83 @@
     tools:context="com.example.goods4u.goods4u.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Price"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:typeface="normal"
+                android:fontFamily="sans-serif"
+                />
+
+            <TextView
+                android:id="@+id/textView_price"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="40dp"
+                android:textAlignment="viewStart" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Category"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:textSize="18sp"
+                android:typeface="normal"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/textView_category"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="40dp"
+                android:textAlignment="viewStart" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:text="Description"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:typeface="normal"
+                android:fontFamily="sans-serif" />
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_description"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
 
 </android.support.v4.widget.NestedScrollView>

@@ -12,12 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f8cdd8002f06412e067ab40e7ad805ee76d905a2">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a1b53ccd10e74305e512943c745edbd3afcc09d4\classes.dex" />
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_ce6acd31e3b122abf9b9a7cd7f4d7606ba0d7674\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -25,8 +25,26 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6c223fdb670ce3ebd1eed61e456ef906195279fb">
+        sha1="46636cafd1c5d10f86127e262ab4a1ae3e2d8e3e">
         <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6e3f33e9cf78a44bb8fe0a957a6fc33674334ffe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9f067adf1772f9216e24354730e2a2d38473e181">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a1b53ccd10e74305e512943c745edbd3afcc09d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_8baa044d10bffa473d60902694f890c66c11157c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,6 +54,33 @@
         revision="25.0.2"
         sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
         <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.6.0_8e9f1d8b68c7340762f02febf522b0e862dd57f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\libs\aws-android-sdk-cognito-2.3.9.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4cedd314c4c96bae220a1a66eb1ddc645aac7a6a">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-cognito-2.3.9_a8312363a25abc089c30196c7f58ab84e49392e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\hasee\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.11.0\840897fcd7223a8143f1d9b6f69714e7be34fd50\okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.11.0_adbfb1c86402f9f40304cc666e902d06ee932f5f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_97a3ca8b899da80152e50e65f63eaa28e905197d\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -57,12 +102,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.0_d81c2f5f88545887550f64260f69065c3bbe8acf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_fd99568c9f648d5a0ce7f7cc3c346a2d0f8080e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="E:\Users\hasee\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
         <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_762852beaf52eae76f747f6bc92d4ee236b0448b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\libs\aws-android-sdk-core-2.3.9.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="790473b1212d4ab6bea58290957fbec2048cc252">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-core-2.3.9_d897161c3ef5568b223c4ac7b5054beefb883995\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -111,93 +183,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_379982b434baf9f1fc0fd47537fb0c119cfe68a9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_ce6acd31e3b122abf9b9a7cd7f4d7606ba0d7674\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_8baa044d10bffa473d60902694f890c66c11157c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\libs\aws-android-sdk-cognito-2.3.9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4cedd314c4c96bae220a1a66eb1ddc645aac7a6a">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-cognito-2.3.9_a8312363a25abc089c30196c7f58ab84e49392e4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\hasee\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.11.0\840897fcd7223a8143f1d9b6f69714e7be34fd50\okio-1.11.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.11.0_adbfb1c86402f9f40304cc666e902d06ee932f5f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_97a3ca8b899da80152e50e65f63eaa28e905197d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.0_d81c2f5f88545887550f64260f69065c3bbe8acf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_fd99568c9f648d5a0ce7f7cc3c346a2d0f8080e1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\code\Goods4U\Goods4U\app\libs\aws-android-sdk-core-2.3.9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="790473b1212d4ab6bea58290957fbec2048cc252">
-        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-core-2.3.9_d897161c3ef5568b223c4ac7b5054beefb883995\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="E:\code\Goods4U\Goods4U\app\libs\httpcore-4.4.6.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="e3fd8ced1f52c7574af952e2e6da0df8df08eb82">
         <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\2\httpcore-4.4.6_4360f79fcd64dca6efbba417a39520fa796164ad\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\code\Goods4U\Goods4U\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="E:\code\Goods4U\Goods4U\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_379982b434baf9f1fc0fd47537fb0c119cfe68a9\classes.dex" />
     </item>
 
 </items>

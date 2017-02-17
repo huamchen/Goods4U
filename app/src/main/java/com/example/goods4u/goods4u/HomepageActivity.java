@@ -48,14 +48,18 @@ import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private List<Item> items;//要显示的数据集合
+    public List<Item> items;//要显示的数据集合
+    public String type="all";
+    public String keyword=null;
     private GridView gvItems;//ListView对象
     private BaseAdapter itemAdapt;//适配器
     private TransferUtility transferUtility;
     private View contentView;
     private View mProgressView;
+    public static HomepageActivity instance = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        instance=this;
         super.onCreate(savedInstanceState);
         items = new ArrayList<Item>();
         setContentView(R.layout.activity_homepage);
@@ -81,6 +85,7 @@ public class HomepageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         setImage();
     }
     public void setImage(){
@@ -95,7 +100,7 @@ public class HomepageActivity extends AppCompatActivity
                 Toast.makeText(HomepageActivity.this, "pic" + position, Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(HomepageActivity.this,picViewActivity.class);
                 intent.putExtra("image",items.get(position).image);
-                intent.putExtra("title",items.get(position).title);
+                intent.putExtra("number",position);
                 startActivity(intent);
             }
         });
@@ -105,7 +110,7 @@ public class HomepageActivity extends AppCompatActivity
      * Shows the progress UI and hides the login form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    public void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
@@ -136,13 +141,19 @@ public class HomepageActivity extends AppCompatActivity
             contentView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-    public class DownloadDataTask extends AsyncTask<Void, Void, Boolean> {
+    public class DownloadDataTask extends AsyncTask<String, Void, Boolean> {
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(String... params) {
 
             items = new ArrayList<Item>();
             try {
-                String jsonObject =  HttpUtil.get("http://52.24.19.99/goods4u.php/items");
+                String jsonObject=null;
+                if(type=="all")
+                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php");
+                else if(type=="title")
+                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?title="+keyword);
+                else if(type=="category")
+                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?category="+keyword);
                 if(jsonObject!=null){
                     JSONArray myJsonArray = new JSONArray(jsonObject);
                     for(int i=0 ; i < myJsonArray.length() ;i++)
@@ -151,6 +162,10 @@ public class HomepageActivity extends AppCompatActivity
                         String Image = myjObject.getString("image");
                         Item item=new Item(Image,null);
                         item.title=myjObject.getString("title");
+                        item.description=myjObject.getString("description");
+                        item.price=myjObject.getString("price");
+                        item.item_id=myjObject.getString("item_id");
+                        item.category=myjObject.getString("category");
                         items.add(item);
                         String path=Environment.getExternalStorageDirectory()+"/pic/";
                         System.out.println(path+Image);

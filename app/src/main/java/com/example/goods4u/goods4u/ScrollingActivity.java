@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -12,12 +15,14 @@ public class ScrollingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         Intent i=getIntent();
-        String title=i.getStringExtra("title");
-
+        int number=i.getIntExtra("number",-1);
+        Item item=HomepageActivity.instance.items.get(number);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
+        toolbar.setTitle(item.title);
         setSupportActionBar(toolbar);
 
-
+        ((TextView)findViewById(R.id.textView_category)).setText(item.category);
+        ((TextView)findViewById(R.id.textView_price)).setText(item.price);
+        ((TextView)findViewById(R.id.textView_description)).setText(item.description);
     }
 }

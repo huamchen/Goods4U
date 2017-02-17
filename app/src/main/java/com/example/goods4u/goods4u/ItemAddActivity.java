@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -87,6 +88,9 @@ public class ItemAddActivity extends AppCompatActivity {
                     TransferObserver observer = transferUtility.upload(Constants.BUCKET_NAME, file.getName(), file);
                     Item item=new Item(name,null);
                     item.title=((EditText)findViewById(R.id.editText_title)).getText().toString();
+                    item.category=((Spinner)findViewById(R.id.spinner_category)).getSelectedItem().toString();
+                    item.description=((EditText)findViewById(R.id.editText_description)).getText().toString();
+                    item.price=((EditText)findViewById(R.id.editText_price)).getText().toString();
                     new UploadDataTask(item).execute();
                 }
             }
@@ -106,8 +110,11 @@ public class ItemAddActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("owner_id",1001);
                 jsonObject.put("image",mItem.image);
+                jsonObject.put("category",mItem.category);
+                if(!mItem.price.isEmpty()) jsonObject.put("price",mItem.price);
                 if(!mItem.title.isEmpty()) jsonObject.put("title",mItem.title);
-                JSONObject call_json = HttpUtil.post("http://52.24.19.99/goods4u.php/items", jsonObject.toString());
+                if(!mItem.description.isEmpty()) jsonObject.put("description",mItem.description);
+                JSONObject call_json = HttpUtil.post("http://52.24.19.99/item.php", jsonObject.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
@@ -120,6 +127,7 @@ public class ItemAddActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             Toast.makeText(ItemAddActivity.this,"Upload success!",Toast.LENGTH_SHORT).show();
+            ItemManageActivity.instance.init();
             ItemAddActivity.this.finish();
         }
 

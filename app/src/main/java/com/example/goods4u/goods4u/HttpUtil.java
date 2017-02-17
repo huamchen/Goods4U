@@ -51,6 +51,31 @@ public class HttpUtil {
         }
         return jsonObjectResp;
     }
+    public static JSONObject put(String url, String json) throws IOException {
+        JSONObject jsonObjectResp = null;
+        try {
+
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            OkHttpClient client = new OkHttpClient();
+            okhttp3.RequestBody body = RequestBody.create(JSON, json.toString());
+            okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(url)
+                    .put(body)
+                    .build();
+            System.out.println(body.toString());
+            okhttp3.Response response = client.newCall(request).execute();
+
+            String networkResp = response.body().string();
+            System.out.println(networkResp);
+            if (!networkResp.isEmpty()) {
+                jsonObjectResp = parseJSONStringToJSONObject(networkResp);
+            }
+        } catch (Exception ex) {
+            String err = String.format("{\"result\":\"false\",\"error\":\"%s\"}", ex.getMessage());
+            jsonObjectResp = parseJSONStringToJSONObject(err);
+        }
+        return jsonObjectResp;
+    }
     private static JSONObject parseJSONStringToJSONObject(final String strr) {
 
         JSONObject response = null;
@@ -79,6 +104,23 @@ public class HttpUtil {
             responses = client.newCall(request).execute();
             jsonData = responses.body().string();
             } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(jsonData);
+        return jsonData;
+    }
+    public static String delete(String url) throws IOException {
+        String jsonData=null;
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .delete()
+                    .build();
+            Response responses = null;
+            responses = client.newCall(request).execute();
+            jsonData = responses.body().string();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println(jsonData);

@@ -126,7 +126,7 @@ public class picViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(picViewActivity.this,ScrollingActivity.class);
-                intent.putExtra("title",i.getStringExtra("title"));
+                intent.putExtra("number",i.getIntExtra("number",-1));
                 startActivity(intent);
             }
         });
