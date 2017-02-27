@@ -30,6 +30,7 @@ public class Constants {
      */
     public static final String BUCKET_NAME = "goods4u-v1";
     public static String username;
+    public static String ownerId;
 }
 
 

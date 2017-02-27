@@ -13,13 +13,7 @@
     tools:context="com.example.goods4u.goods4u.HomepageActivity"
     tools:showIn="@layout/app_bar_homepage"
     android:orientation="horizontal"  >
-    <ProgressBar
-        android:id="@+id/homepage_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,4 +23,6 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:id="@+id/GridView_picutre" />
+
+
 </RelativeLayout>

@@ -117,7 +117,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("owner_id",1001);
+                jsonObject.put("owner_id",Constants.ownerId);
                 jsonObject.put("image",mItem.image);
                 jsonObject.put("category",mItem.category);
                 if(!mItem.price.isEmpty()) jsonObject.put("price",mItem.price);
@@ -177,6 +177,13 @@ public class ItemEditActivity extends AppCompatActivity {
 
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                System.out.println("picSize="+bitmap.getByteCount()+"   PicScale="+bitmap.getWidth()*bitmap.getWidth());
+                if(bitmap.getByteCount()>20000000) {
+                    bitmap = null;
+                    Toast.makeText(ItemEditActivity.this,"Picture should smaller than 1MB",Toast.LENGTH_SHORT).show();
+                    targetImage.setImageBitmap(null);
+                }
+                else targetImage.setImageBitmap(bitmap);
                 targetImage.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

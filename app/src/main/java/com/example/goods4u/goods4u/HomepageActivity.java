@@ -49,7 +49,7 @@ import java.util.List;
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public List<Item> items;//要显示的数据集合
-    public String type="all";
+    public String type=null;
     public String keyword=null;
     private GridView gvItems;//ListView对象
     private BaseAdapter itemAdapt;//适配器
@@ -61,6 +61,13 @@ public class HomepageActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         instance=this;
         super.onCreate(savedInstanceState);
+        Intent intent=getIntent();
+        type=intent.getStringExtra("type");
+        keyword=intent.getStringExtra("keyword");
+        String title=intent.getStringExtra("title");
+        if(title!=null)
+            setTitle(title);
+        else setTitle("HomePage");
         items = new ArrayList<Item>();
         setContentView(R.layout.activity_homepage);
         transferUtility = Util.getTransferUtility(this);
@@ -106,6 +113,13 @@ public class HomepageActivity extends AppCompatActivity
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        instance=this;
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -147,13 +161,15 @@ public class HomepageActivity extends AppCompatActivity
 
             items = new ArrayList<Item>();
             try {
+                System.out.println("type:"+type+" keyword:"+keyword+" end");
                 String jsonObject=null;
-                if(type=="all")
+                if(type==null)
                     jsonObject =  HttpUtil.get("http://52.24.19.99/item.php");
-                else if(type=="title")
+                else if(type.equals("title"))
                     jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?title="+keyword);
-                else if(type=="category")
-                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?category="+keyword);
+                else if(type.equals("category")) {
+                    jsonObject = HttpUtil.get("http://52.24.19.99/item.php?category=" + keyword);
+                }
                 if(jsonObject!=null){
                     JSONArray myJsonArray = new JSONArray(jsonObject);
                     for(int i=0 ; i < myJsonArray.length() ;i++)
@@ -179,9 +195,7 @@ public class HomepageActivity extends AppCompatActivity
                         }
                     }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -190,7 +204,6 @@ public class HomepageActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
             showProgress(false);
         }
 

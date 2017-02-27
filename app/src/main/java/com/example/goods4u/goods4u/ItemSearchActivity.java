@@ -38,9 +38,13 @@ public class ItemSearchActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 keyword=((EditText) findViewById(R.id.Search_name)).getText().toString();
-                HomepageActivity.instance.keyword=keyword;
-                HomepageActivity.instance.type="title";
-                HomepageActivity.instance.setImage();
+
+                Intent intent=new Intent(ItemSearchActivity.this,HomepageActivity.class);
+                intent.putExtra("keyword",keyword);
+                intent.putExtra("type","title");
+                intent.putExtra("title","Search Result");
+                startActivity(intent);
+
                 ItemSearchActivity.this.finish();
             }
         });
@@ -49,9 +53,14 @@ public class ItemSearchActivity extends Activity {
     public void searchByCategory(View v) {
 
         keyword=((Button) v).getText().toString();
-        HomepageActivity.instance.keyword=keyword;
-        HomepageActivity.instance.type="category";
-        HomepageActivity.instance.setImage();
+
+
+        Intent intent=new Intent(ItemSearchActivity.this,HomepageActivity.class);
+        intent.putExtra("keyword",keyword);
+        intent.putExtra("type","category");
+        intent.putExtra("title","search result");
+        startActivity(intent);
+
         ItemSearchActivity.this.finish();
 
     }

@@ -172,7 +172,8 @@ public class ItemManageActivity extends AppCompatActivity {
             // TODO: attempt authentication against a network service.
 
             try {
-                String jsonObject =  HttpUtil.get("http://52.24.19.99/item.php");
+                System.out.println("http://52.24.19.99/item.php?ownerid="+ Constants.ownerId+ "end");
+                String jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?ownerid="+ Constants.ownerId);
                 if(jsonObject!=null){
                     JSONArray myJsonArray = new JSONArray(jsonObject);
                     for(int i=0 ; i < myJsonArray.length() ;i++)

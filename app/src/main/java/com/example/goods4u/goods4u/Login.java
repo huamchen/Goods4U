@@ -3,10 +3,12 @@ package com.example.goods4u.goods4u;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,6 +20,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Base64OutputStream;
+import android.util.Xml;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,59 +32,49 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.http.util.EncodingUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class Login extends AppCompatActivity{
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world","aaa@uw.edu:12345"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
-
+        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -91,49 +86,15 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-    }
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
+        Button button = (Button) findViewById(R.id.button_signuppage);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Login.this,SignupActivity.class);
+                startActivity(intent);
             }
-        }
+        });
     }
 
 
@@ -148,11 +109,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String username =  mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -166,13 +127,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(username)) {
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
             cancel = true;
         }
 
@@ -184,14 +141,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
@@ -234,73 +186,45 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+    public static String encryptPBKDF2(String msg) {
+        try {
+            int iterations = 500;
+            char[] chars = msg.toCharArray();
+            byte[] salt = "_OR:LM?DVI&#$LN:KDURLKNJDLK".getBytes();
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
+            PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 32 * 8);
+            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            byte[] hash = skf.generateSecret(spec).getEncoded();
+            String result=new String(Base64.encode(hash,  Base64.DEFAULT),"UTF-8");
+            result=result.substring(0,result.length()-1);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        addEmailsToAutoComplete(emails);
+        return null;
     }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
+    public static boolean isNumeric(String str){
+        for (int i = 0; i < str.length(); i++){
+            System.out.println(str.charAt(i));
+            if (!Character.isDigit(str.charAt(i))){
+                return false;
+            }
+        }
+        return true;
     }
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(Login.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUsername;
         private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
+        String info=null;
+        UserLoginTask(String username, String password) {
+            mUsername = username;
+            mPassword = encryptPBKDF2(password);
         }
 
         @Override
@@ -308,20 +232,28 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             // TODO: attempt authentication against a network service.
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                System.out.println("password: "+mPassword+" end");
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("username",mUsername);
+                jsonObject.put("password",mPassword);
+                JSONObject call_json = HttpUtil.post("http://52.24.19.99/login.php", jsonObject.toString());
+                info=call_json.get("data").toString();
+                if(isNumeric(info)){
+                    Constants.ownerId=info;
+                    return true;
+                }
+
+                else{
+                    return false;
+                }
+            } catch (JSONException e) {
+
+                e.printStackTrace();
+                return false;
+            } catch (IOException e) {
+                e.printStackTrace();
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-            return false;
             // TODO: register the new account here.
 
         }
@@ -334,13 +266,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             if (success) {
                 Intent intent=new Intent(Login.this,HomepageActivity.class);
                 startActivity(intent);
-                intent.putExtra("username",mEmail);
-                Constants.username=mEmail;
+                intent.putExtra("username",mUsername);
+                Constants.username=mUsername;
                 Login.this.finish();
             } else {
-                mEmailView.setError(getString(R.string.error_invalid_email));
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                Toast.makeText(Login.this,info,Toast.LENGTH_SHORT).show();
             }
         }
 

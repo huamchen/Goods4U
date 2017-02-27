@@ -37,7 +37,6 @@ public class HttpUtil {
                     .url(url)
                     .post(body)
                     .build();
-            System.out.println(body.toString());
             okhttp3.Response response = client.newCall(request).execute();
 
             String networkResp = response.body().string();
@@ -62,7 +61,6 @@ public class HttpUtil {
                     .url(url)
                     .put(body)
                     .build();
-            System.out.println(body.toString());
             okhttp3.Response response = client.newCall(request).execute();
 
             String networkResp = response.body().string();
