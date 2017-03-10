@@ -111,8 +111,12 @@ public class ItemAddActivity extends AppCompatActivity {
                 jsonObject.put("owner_id",Constants.ownerId);
                 jsonObject.put("image",mItem.image);
                 jsonObject.put("category",mItem.category);
+                jsonObject.put("university",Constants.university);
+                if(mItem.title.isEmpty()) {
+                    return false;
+                }
+                jsonObject.put("title",mItem.title);
                 if(!mItem.price.isEmpty()) jsonObject.put("price",mItem.price);
-                if(!mItem.title.isEmpty()) jsonObject.put("title",mItem.title);
                 if(!mItem.description.isEmpty()) jsonObject.put("description",mItem.description);
                 JSONObject call_json = HttpUtil.post("http://52.24.19.99/item.php", jsonObject.toString());
             } catch (IOException e) {
@@ -126,9 +130,12 @@ public class ItemAddActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            Toast.makeText(ItemAddActivity.this,"Upload success!",Toast.LENGTH_SHORT).show();
-            ItemManageActivity.instance.init();
-            ItemAddActivity.this.finish();
+            if(success){
+                Toast.makeText(ItemAddActivity.this,"Upload success!",Toast.LENGTH_SHORT).show();
+                ItemManageActivity.instance.init();
+                ItemAddActivity.this.finish();
+            }
+            else Toast.makeText(ItemAddActivity.this,"Title could not be empty",Toast.LENGTH_SHORT).show();
         }
 
     }

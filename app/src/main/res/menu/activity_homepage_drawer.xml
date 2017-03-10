@@ -9,10 +9,6 @@
         <item android:title="Sell Items"
             android:id="@+id/nav_sell"
             android:icon="@android:drawable/ic_menu_edit" />
-        <item
-            android:id="@+id/nav_setting"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Setting" />
     </group>
 
 </menu>

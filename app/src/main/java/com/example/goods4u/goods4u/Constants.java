@@ -22,7 +22,6 @@ public class Constants {
      * on what to fill in.
      */
     public static final String COGNITO_POOL_ID = "us-west-2:9df54923-2295-4a24-9ff2-afa39773835b";
-
     /*
      * Note, you must first create a bucket using the S3 console before running
      * the sample (https://console.aws.amazon.com/s3/). After creating a bucket,
@@ -31,6 +30,7 @@ public class Constants {
     public static final String BUCKET_NAME = "goods4u-v1";
     public static String username;
     public static String ownerId;
+    public static String university;
 }
 
 

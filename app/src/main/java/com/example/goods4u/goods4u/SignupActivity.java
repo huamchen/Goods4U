@@ -92,7 +92,8 @@ public class SignupActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             Toast.makeText(SignupActivity.this,info,Toast.LENGTH_SHORT).show();
-            if(info.equals("create successful\n"))
+            System.out.println("info: "+info+" end");
+            if(info.equals("Message sent"))
                 SignupActivity.this.finish();
         }
 

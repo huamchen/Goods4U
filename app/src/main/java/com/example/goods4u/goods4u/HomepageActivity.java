@@ -27,6 +27,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
@@ -68,6 +69,8 @@ public class HomepageActivity extends AppCompatActivity
         if(title!=null)
             setTitle(title);
         else setTitle("HomePage");
+
+
         items = new ArrayList<Item>();
         setContentView(R.layout.activity_homepage);
         transferUtility = Util.getTransferUtility(this);
@@ -92,7 +95,9 @@ public class HomepageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View v = navigationView.getHeaderView(0);
+       ((TextView)v.findViewById(R.id.TextView_Username)).setText(Constants.username);
+        ((TextView)v.findViewById(R.id.textView_Univerisy)).setText(Constants.university);
         setImage();
     }
     public void setImage(){
@@ -164,11 +169,11 @@ public class HomepageActivity extends AppCompatActivity
                 System.out.println("type:"+type+" keyword:"+keyword+" end");
                 String jsonObject=null;
                 if(type==null)
-                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php");
+                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?university="+Constants.university);
                 else if(type.equals("title"))
-                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?title="+keyword);
+                    jsonObject =  HttpUtil.get("http://52.24.19.99/item.php?title="+keyword+"&university="+Constants.university);
                 else if(type.equals("category")) {
-                    jsonObject = HttpUtil.get("http://52.24.19.99/item.php?category=" + keyword);
+                    jsonObject = HttpUtil.get("http://52.24.19.99/item.php?category=" + keyword+"&university="+Constants.university);
                 }
                 if(jsonObject!=null){
                     JSONArray myJsonArray = new JSONArray(jsonObject);
@@ -274,10 +279,7 @@ public class HomepageActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_setting) {
-
-        } else if (id == R.id.nav_search) {
+        if (id == R.id.nav_search) {
             Intent intent=new Intent(HomepageActivity.this,ItemSearchActivity.class);
             startActivity(intent);
         } else if (id== R.id.nav_sell){

@@ -120,9 +120,14 @@ public class ItemEditActivity extends AppCompatActivity {
                 jsonObject.put("owner_id",Constants.ownerId);
                 jsonObject.put("image",mItem.image);
                 jsonObject.put("category",mItem.category);
-                if(!mItem.price.isEmpty()) jsonObject.put("price",mItem.price);
-                if(!mItem.title.isEmpty()) jsonObject.put("title",mItem.title);
-                if(!mItem.description.isEmpty()) jsonObject.put("description",mItem.description);
+                jsonObject.put("university",Constants.university);
+                if(mItem.title.isEmpty()) {
+
+                    return false;
+                }
+                jsonObject.put("title",mItem.title);
+                jsonObject.put("price",mItem.price);
+                jsonObject.put("description",mItem.description);
                 JSONObject call_json = HttpUtil.put("http://52.24.19.99/item.php/"+itemId, jsonObject.toString());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -135,9 +140,12 @@ public class ItemEditActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            Toast.makeText(ItemEditActivity.this,"Upload success!",Toast.LENGTH_SHORT).show();
-            ItemManageActivity.instance.init();
-            ItemEditActivity.this.finish();
+            if(success) {
+                Toast.makeText(ItemEditActivity.this, "Upload success!", Toast.LENGTH_SHORT).show();
+                ItemManageActivity.instance.init();
+                ItemEditActivity.this.finish();
+            }
+            else{Toast.makeText(ItemEditActivity.this,"Title could not be empty",Toast.LENGTH_SHORT).show();}
         }
 
     }

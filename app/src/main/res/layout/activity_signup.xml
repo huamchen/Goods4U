@@ -104,6 +104,13 @@
 
         </LinearLayout>
 
+        <TextView
+            android:text='*Email should end with ".edu"'
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
 </RelativeLayout>

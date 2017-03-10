@@ -237,13 +237,17 @@ public class Login extends AppCompatActivity{
                 jsonObject.put("username",mUsername);
                 jsonObject.put("password",mPassword);
                 JSONObject call_json = HttpUtil.post("http://52.24.19.99/login.php", jsonObject.toString());
-                info=call_json.get("data").toString();
-                if(isNumeric(info)){
-                    Constants.ownerId=info;
+
+
+                if(call_json.has("user_id")){
+                    Constants.username=mUsername;
+                    Constants.ownerId=call_json.get("user_id").toString();
+                    Constants.university=call_json.get("university").toString();
                     return true;
                 }
 
                 else{
+                    info=call_json.get("data").toString();
                     return false;
                 }
             } catch (JSONException e) {
